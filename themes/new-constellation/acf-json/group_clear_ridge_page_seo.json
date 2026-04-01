@@ -1,0 +1,94 @@
+{
+    "key": "group_clear_ridge_page_seo",
+    "title": "SEO",
+    "fields": [
+        {
+            "key": "field_cr_page_meta_description",
+            "label": "Meta Description",
+            "name": "meta_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Page-specific meta description. Overrides the global meta description. Recommended length: 150-160 characters.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": 160,
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_cr_page_og_image",
+            "label": "OG Image",
+            "name": "og_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Page-specific social sharing image. Overrides the global OG image. Recommended size: 1200x630px.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_69cd7f283040f",
+            "label": "No Index",
+            "name": "no_index",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Prevent search engines from indexing this page and remove it from the sitemap.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1775075136
+}

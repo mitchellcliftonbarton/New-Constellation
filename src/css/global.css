@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+
+/*
+Global
+*/
+
+@theme {
+  --text-sm: 1.2rem;
+  --text-sm--line-height: 1;
+  --text-base: 2.4rem;
+  --text-base--line-height: 1;
+  --text-md: 4.8rem;
+  --text-md--line-height: 1;
+
+  --color-black: #000;
+  --color-white: #fff;
+  --color-navy: #1d1735;
+  --color-cream: #fafaf2;
+  --color-gold: #aba465;
+
+  --spacing-base: 2rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 8rem;
+
+  --font-primary: 'Apercu Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-secondary: 'Apercu Mono', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-tertiary: 'Austin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --underline-offset: 0.17em;
+  --underline-thickness: 0.05em;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 10px;
+  color: var(--color-navy);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
+  font-weight: normal;
+  line-height: 1;
+
+  @media screen and (min-width: 1024px) {
+    font-size: var(--text-base);
+  }
+}
+
+header {
+  flex: none;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+input {
+  outline: none;
+}
+
+figure {
+  margin: 0;
+}
+
+/*
+Utils
+*/
+
+@utility fill-parent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+@utility media-cover {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+Lazy Loading
+*/
+
+img[loading='lazy'] {
+  opacity: 0;
+  transition: opacity 0.4s;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+/*
+Password Form
+*/
+
+.password-form {
+  text-align: center;
+
+  form {
+    width: 350px;
+  }
+
+  form > * + * {
+    margin-top: 1.6rem;
+  }
+
+  form p:first-child {
+    font-size: var(--text-base);
+    text-align: center;
+  }
+
+  form p:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form input[type='password'] {
+    outline: none;
+    box-shadow: none;
+    color: black;
+    height: auto;
+    padding: 1rem;
+    border: 2px solid black;
+    background-color: var(--white);
+    display: block;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  form label {
+    width: 100%;
+  }
+
+  form input[type='submit'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid var(--primary-bg);
+    text-transform: uppercase;
+    font-size: var(--text-base-minus);
+    color: var(--primary-bg);
+    text-align: center;
+    width: 100%;
+    margin-top: var(--spacing-base);
+    cursor: pointer;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &:hover {
+      @media (width >= 1024px) {
+        border-style: dotted;
+      }
+    }
+  }
+}

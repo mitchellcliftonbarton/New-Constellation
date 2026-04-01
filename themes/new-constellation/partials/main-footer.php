@@ -16,7 +16,7 @@ $footer_links = get_field('footer_links', 'option');
     <?php get_template_part('partials/icons/wordmark-alt'); ?>
   </a>
 
-  <ul class="footer-link text-sm font-secondary flex items-center justify-between w-full gap-base" role="navigation">
+  <ul class="footer-link text-xs font-secondary flex items-center justify-between w-full gap-base" role="navigation">
     <?php foreach ($footer_links as $link):
       $url = $link['link']['url'] ?? '';
       $title = $link['link']['title'] ?? '';

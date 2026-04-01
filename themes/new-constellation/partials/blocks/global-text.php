@@ -10,9 +10,9 @@
 ?>
 
 <?php if ($title || $text): ?>
-  <section class="global-text grid grid-cols-12 gap-md">
+  <section class="global-text">
     <?php if ($text): ?>
-      <div class="rich-text col-span-12 lg:col-span-6 lg:col-start-4"><?= $text; ?></div>
+      <div class="rich-text"><?= $text; ?></div>
     <?php endif; ?>
   </section>
 <?php endif; ?>

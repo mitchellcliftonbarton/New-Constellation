@@ -16,7 +16,9 @@
     "vite": "^7.1.0"
   },
   "dependencies": {
+    "@vimeo/player": "^2.30.3",
     "mitt": "^3.0.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "youtube-player": "^5.6.0"
   }
 }

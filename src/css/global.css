@@ -5,7 +5,9 @@ Global
 */
 
 @theme {
-  --text-sm: 1.2rem;
+  --text-xs: 1.2rem;
+  --text-xs--line-height: 1;
+  --text-sm: 1.6rem;
   --text-sm--line-height: 1;
   --text-base: 2.4rem;
   --text-base--line-height: 1;
@@ -53,6 +55,10 @@ body {
   @media screen and (min-width: 1024px) {
     font-size: var(--text-base);
   }
+}
+
+main {
+  background: var(--color-cream);
 }
 
 header {
@@ -174,6 +180,32 @@ Password Form
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
 /*
 Landing
 */
@@ -185,10 +217,154 @@ Landing
   }
 }
 
+@keyframes stroke-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -3600;
+  }
+}
+
 .bg-pattern {
   svg {
+    position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
     top: 50%;
+    transform: translateX(-55.4%) translateY(-50%);
+    height: 145%;
+    width: auto;
+
+    & > path {
+      stroke-dasharray: 3000 600;
+      animation: stroke-flow 12s linear infinite;
+    }
+  }
+}
+
+.news-item {
+  a {
+    .title {
+      span {
+        left: 0px;
+        transform: translateX(0%);
+        position: absolute;
+        display: inline-block;
+        white-space: nowrap;
+        transition:
+          transform 0.3s,
+          left 0.3s;
+      }
+    }
+
+    .subtitle {
+      span {
+        text-decoration: underline;
+        text-underline-offset: 0.22em;
+        text-decoration-thickness: var(--underline-thickness);
+        right: 0px;
+        transform: translateX(0%);
+        position: absolute;
+        display: inline-block;
+        white-space: nowrap;
+        transition:
+          transform 0.3s,
+          right 0.3s;
+      }
+    }
+
+    &:hover {
+      .title {
+        span {
+          transform: translateX(-50%);
+          left: 50%;
+        }
+      }
+
+      .subtitle {
+        span {
+          transform: translateX(50%);
+          right: 50%;
+        }
+      }
+    }
+  }
+}
+
+.page-modules {
+  & > section + section {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/*
+Video Block
+*/
+
+def-video {
+  display: block;
+
+  .video-container {
+    color: white;
+
+    .play {
+      transition: none;
+      pointer-events: auto;
+    }
+
+    &.playing {
+      .play {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      video,
+      .video-inner {
+        opacity: 1;
+      }
+    }
+  }
+
+  .play-icon {
+    width: 48px;
+    z-index: 10;
+    position: relative;
+
+    @media screen and (min-width: theme('screens.lg')) {
+      width: 64px;
+    }
+  }
+
+  .video-inner {
+    iframe {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  video,
+  .video-inner {
+    opacity: 0;
+  }
+
+  &.no-poster {
+    video,
+    .video-inner {
+      opacity: 1;
+    }
+  }
+
+  .play {
+    color: var(--color-black);
+  }
+
+  &.autoplay {
+    video {
+      opacity: 1;
+    }
   }
 }

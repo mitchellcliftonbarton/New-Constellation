@@ -16,8 +16,21 @@
     <?php the_content(); ?>
   </main>
 <?php else: ?>
-  <section class="h-svh w-full flex justify-between items-center bg-cream">
-    <p>New Constellation</p>
+  <section class="w-full bg-cream relative">
+    <div class="landing h-svh flex justify-center items-center relative z-10">
+      <h1>
+        <span class="sr-only">New Constellation</span>
+        <?php get_template_part('partials/icons/wordmark'); ?>
+      </h1>
+    </div>
+
+    <div class="mission-statement relative z-10">
+
+    </div>
+
+    <div class="bg-pattern fill-parent overflow-hidden" aria-hidden="true">
+      <?php get_template_part('partials/icons/bg-wordmark'); ?>
+    </div>
   </section>
 <?php endif; ?>
 

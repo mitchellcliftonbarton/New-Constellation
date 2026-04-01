@@ -79,5 +79,7 @@
     <?php wp_body_open(); ?>
 
     <?php if (!$is_password_protected): ?>
+      <?php get_template_part('partials/main-nav'); ?>
+
       <main>
     <?php endif; ?>

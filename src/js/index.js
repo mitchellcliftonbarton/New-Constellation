@@ -28,6 +28,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   new ImageLoader()
 
+  // Light / dark mode toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      themeToggle.setAttribute('aria-pressed', isDark);
+    });
+  }
+
   const starCanvas = document.getElementById('footer-canvas');
   if (starCanvas) new StarTrail(starCanvas);
 

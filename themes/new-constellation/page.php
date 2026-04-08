@@ -23,16 +23,24 @@
   </main>
 <?php else: ?>
   <?php if ($modules): ?>
-    <div class="page-modules py-xl mx-auto max-w-[850px]">
-      <section class="header">
-        <h1 class="text-md font-secondary uppercase text-navy text-center"><?= $title; ?></h1>
+    <div class="page-content py-[250px] px-xl relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-[160svh]">
+        <div class="bg-pattern fill-parent" aria-hidden="true">
+          <?php get_template_part('partials/icons/bg-wordmark'); ?>
+        </div>
+      </div>
+
+      <section class="header relative z-10">
+        <h1 class="text-md font-secondary uppercase text-navy text-left tracking-[.09em]"><?= $title; ?></h1>
       </section>
 
-      <?php foreach ($modules as $module): ?>
-        <?php get_template_part('partials/module-wrapper', null, array(
-          'module' => $module
-        )); ?>
-      <?php endforeach; ?>
+      <div class="page-modules w-1/2 mt-xl relative z-10">
+        <?php foreach ($modules as $module): ?>
+          <?php get_template_part('partials/module-wrapper', null, array(
+            'module' => $module
+          )); ?>
+        <?php endforeach; ?>
+      </div>
     </div>
   <?php endif; ?>
 <?php endif; ?>

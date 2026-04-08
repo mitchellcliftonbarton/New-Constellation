@@ -1,4 +1,7 @@
 .rich-text {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+
   & > * + * {
     margin-top: 1.5em;
   }
@@ -9,11 +12,12 @@
   h4,
   h5,
   h6 {
-    font-weight: 600;
     line-height: 1.2;
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
 
     & + * {
-      margin-top: 0.7em;
+      margin-top: 1.5em;
     }
   }
 
@@ -23,7 +27,7 @@
   & > * + h4,
   & > * + h5,
   & > * + h6 {
-    margin-top: 2em;
+    margin-top: 3em;
   }
 
   ul,

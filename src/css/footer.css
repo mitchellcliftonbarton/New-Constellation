@@ -1,8 +1,23 @@
 #main-footer {
   color: var(--color-white);
+  cursor: none;
+
+  a {
+    cursor: none;
+  }
 
   .wordmark-alt-icon {
     width: 18.2rem;
     height: auto;
+  }
+
+  #footer-canvas {
+    pointer-events: all;
+    z-index: 0;
+  }
+
+  > *:not(#footer-canvas) {
+    position: relative;
+    z-index: 1;
   }
 }

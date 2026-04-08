@@ -37,18 +37,18 @@
         <?php if ($gold_text_1 || $gold_text_2): ?>
           <div class="flex gap-4">
             <?php if ($gold_text_1): ?>
-              <p class="uppercase text-gold font-secondary text-md"><?= $gold_text_1; ?></p>
+              <p class="uppercase text-gold font-secondary font-medium text-md tracking-[0.09em]"><?= $gold_text_1; ?></p>
             <?php endif; ?>
 
             <?php if ($gold_text_2): ?>
               <p class="font-tertiary text-base italic text-navy mt-[35px]">and</p>
-              <p class="uppercase text-gold font-secondary text-md mt-[25px]"><?= $gold_text_2; ?></p>
+              <p class="uppercase text-gold font-secondary text-md mt-[25px] font-medium tracking-[0.09em]"><?= $gold_text_2; ?></p>
             <?php endif; ?>
           </div>
         <?php endif; ?>
 
         <?php if ($blue_text_1 || $blue_text_2): ?>
-          <div class="text-md text-navy font-primary">
+          <div class="text-md text-navy font-primary leading-[.9] mt-[-8px]">
             <?php if ($blue_text_1): ?>
               <p class="translate-x-[-39%]"><?= $blue_text_1; ?></p>
             <?php endif; ?>
@@ -70,7 +70,7 @@
     <section class="w-full bg-gold relative px-xl py-[210px]">
       <div class="mx-auto max-w-[850px] space-y-md">
         <?php if ($news_title): ?>
-          <h2 class="text-md font-secondary uppercase text-white text-center"><?= $news_title; ?></h2>
+          <h2 class="text-md font-secondary uppercase text-white text-center font-medium"><?= $news_title; ?></h2>
         <?php endif; ?>
 
         <ul class="news-items">
@@ -89,7 +89,7 @@
                 </div>
                 
                 <div class="subtitle h-[31px] relative">
-                  <span class="text-sm font-primary text-white"><?= $subtitle; ?></span>
+                  <span class="text-sm font-secondary text-white"><?= $subtitle; ?></span>
                 </div>
               </a>
             </li>

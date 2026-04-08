@@ -3,11 +3,12 @@
 $footer_links = get_field('footer_links', 'option');
 ?>
 
-<footer 
-  id="main-footer" 
+<footer
+  id="main-footer"
   aria-label="Footer"
-  class="bg-navy w-full px-xl py-lg flex flex-col items-start justify-between gap-[400px]"
+  class="bg-navy w-full px-xl py-lg flex flex-col items-start justify-between gap-[400px] relative"
 >
+  <canvas id="footer-canvas" class="fill-parent" aria-hidden="true"></canvas>
   <a 
     href="/" 
     class="lg:hover:opacity-50 transition-opacity duration-300"

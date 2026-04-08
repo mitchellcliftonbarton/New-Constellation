@@ -95,7 +95,7 @@ if ($contain) {
   </figure>
 
   <?php if ($show_caption && $image_caption): ?>
-    <div class="caption text-left mt-5">
+    <div class="caption text-left text-sm mt-5">
       <?= $image_caption; ?>
     </div>
   <?php endif; ?>

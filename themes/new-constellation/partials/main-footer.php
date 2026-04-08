@@ -1,5 +1,6 @@
 <?php
 // ACF
+$footer_email_link = get_field('footer_email_link', 'option');
 $footer_links = get_field('footer_links', 'option');
 ?>
 
@@ -17,28 +18,34 @@ $footer_links = get_field('footer_links', 'option');
     <?php get_template_part('partials/icons/wordmark-alt'); ?>
   </a>
 
-  <ul class="footer-link font-secondary flex items-center justify-between w-full gap-base" role="navigation">
-    <?php foreach ($footer_links as $link):
-      $is_large = $link['is_large'] ?? false;
-      $url = $link['link']['url'] ?? '';
-      $title = $link['link']['title'] ?? '';
-      $target = $link['link']['target'] ?? '';
+  <div class="flex items-end justify-between w-full gap-base">
+    <?php if ($footer_email_link): ?>
+      <a href="<?= esc_url($footer_email_link['url']) ?>" class="text-sm font-secondary flex-none lg:hover:opacity-50 transition-opacity duration-300">
+        <?= esc_html($footer_email_link['title']) ?>
+      </a>
+    <?php endif; ?>
+  
+    <ul class="footer-link text-xs font-secondary flex items-center justify-end w-full gap-64 flex-1" role="navigation">
+      <?php foreach ($footer_links as $link):
+        $url = $link['link']['url'] ?? '';
+        $title = $link['link']['title'] ?? '';
+        $target = $link['link']['target'] ?? '';
 
-      $font_size_class = $is_large ? 'text-sm' : 'text-xs';
-      if (!$url || !$title) continue;
-    ?>
+        if (!$url || !$title) continue;
+      ?>
+        <li>
+          <a href="<?= esc_url($url) ?>"<?= $target ? ' target="' . esc_attr($target) . '"' : '' ?> class="lg:hover:opacity-50 transition-opacity duration-300">
+            <?= esc_html($title) ?>
+            <?php if ($target === '_blank'): ?>
+              <span class="sr-only"> (opens in new tab)</span>
+            <?php endif; ?>
+          </a>
+        </li>
+      <?php endforeach; ?>
+
       <li>
-        <a href="<?= esc_url($url) ?>"<?= $target ? ' target="' . esc_attr($target) . '"' : '' ?> class="lg:hover:opacity-50 transition-opacity duration-300 <?= $font_size_class ?>">
-          <?= esc_html($title) ?>
-          <?php if ($target === '_blank'): ?>
-            <span class="sr-only"> (opens in new tab)</span>
-          <?php endif; ?>
-        </a>
+        <p>&copy; <?= date('Y') ?> New Constellation</p>
       </li>
-    <?php endforeach; ?>
-
-    <li>
-      <p class="text-xs">&copy; <?= date('Y') ?> New Constellation</p>
-    </li>
-  </ul>
+    </ul>
+  </div>
 </footer>

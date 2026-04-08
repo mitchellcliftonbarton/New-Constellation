@@ -46,6 +46,23 @@
             "mime_types": ""
         },
         {
+            "key": "field_69d6937cacd03",
+            "label": "Footer Email Link",
+            "name": "footer_email_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69cd7f544b95e",
             "label": "Footer Links",
             "name": "footer_links",
@@ -83,28 +100,6 @@
                     },
                     "return_format": "array",
                     "allow_in_bindings": 0,
-                    "parent_repeater": "field_69cd7f544b95e"
-                },
-                {
-                    "key": "field_69d68e75b069a",
-                    "label": "Is Large",
-                    "name": "is_large",
-                    "aria-label": "",
-                    "type": "true_false",
-                    "instructions": "If true, this link will be a larger font size compared to the other links.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "allow_in_bindings": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": "",
                     "parent_repeater": "field_69cd7f544b95e"
                 }
             ]
@@ -194,5 +189,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1775668876
+    "modified": 1775670151
 }

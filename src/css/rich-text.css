@@ -13,8 +13,12 @@
   h5,
   h6 {
     line-height: 1.2;
-    font-size: var(--text-base);
+    font-size: var(--text-base-minus);
     font-family: var(--font-primary);
+
+    @media screen and (min-width: theme('screens.lg')) {
+      font-size: var(--text-base);
+    }
 
     & + * {
       margin-top: 1.5em;

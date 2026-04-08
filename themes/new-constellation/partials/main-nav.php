@@ -1,6 +1,6 @@
 <?php $is_front_page = is_front_page(); ?>
 
-<header id="main-nav" class=" absolute top-0 left-0 w-full px-xl py-md flex items-center justify-between bg-transparent z-[1000]">
+<header id="main-nav" class=" absolute top-0 left-0 w-full px-xl py-md flex items-center justify-center lg:justify-between bg-transparent z-[1000]">
 
   <div class="nav-logo">
     <?php if (!$is_front_page): ?>
@@ -13,7 +13,7 @@
 
   <button
     id="theme-toggle"
-    class="nav-theme-toggle lg:hover:opacity-50 transition-opacity duration-300"
+    class="nav-theme-toggle lg:hover:opacity-50 transition-opacity duration-300 hidden lg:block"
     aria-label="Toggle light/dark mode"
     aria-pressed="false"
   >

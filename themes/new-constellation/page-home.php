@@ -37,24 +37,28 @@
         <?php if ($gold_text_1 || $gold_text_2): ?>
           <div class="flex gap-4">
             <?php if ($gold_text_1): ?>
-              <p class="uppercase text-gold font-secondary font-medium text-md tracking-[0.09em]"><?= $gold_text_1; ?></p>
+              <p data-mission="gold-1" class="uppercase text-gold font-secondary font-medium text-base-plus lg:text-md tracking-[0.09em]"><?= $gold_text_1; ?></p>
             <?php endif; ?>
 
             <?php if ($gold_text_2): ?>
-              <p class="font-tertiary text-base italic text-navy mt-[35px]">and</p>
-              <p class="uppercase text-gold font-secondary text-md mt-[25px] font-medium tracking-[0.09em]"><?= $gold_text_2; ?></p>
+              <p class="font-tertiary text-sm lg:text-base italic text-navy mt-[22px] lg:mt-[35px]">and</p>
+              <p data-mission="gold-2" class="uppercase text-gold font-secondary text-base-plus lg:text-md mt-[18px] lg:mt-[25px] font-medium tracking-[0.09em]"><?= $gold_text_2; ?></p>
             <?php endif; ?>
           </div>
         <?php endif; ?>
 
         <?php if ($blue_text_1 || $blue_text_2): ?>
-          <div class="text-md text-navy font-primary leading-[.9] mt-[-8px]">
+          <div class="text-base-plus lg:text-md text-navy font-primary leading-[.9] mt-[-8px]">
             <?php if ($blue_text_1): ?>
-              <p class="translate-x-[-39%]"><?= $blue_text_1; ?></p>
+              <div data-mission="blue-1">
+                <p class="translate-x-[-39%]"><?= $blue_text_1; ?></p>
+              </div>
             <?php endif; ?>
 
             <?php if ($blue_text_2): ?>
-              <p class="translate-x-[39%]"><?= $blue_text_2; ?></p>
+              <div data-mission="blue-2">
+                <p class="translate-x-[39%]"><?= $blue_text_2; ?></p>
+              </div>
             <?php endif; ?>
           </div>
         <?php endif; ?>
@@ -67,10 +71,10 @@
   </section>
 
   <?php if ($news_items): ?>
-    <section class="w-full bg-gold relative px-xl py-[210px]">
+    <section class="w-full bg-gold relative px-md lg:px-xl py-[100px] lg:py-[210px]">
       <div class="mx-auto max-w-[850px] space-y-md">
         <?php if ($news_title): ?>
-          <h2 class="text-md font-secondary uppercase text-white text-center font-medium"><?= $news_title; ?></h2>
+          <h2 class="text-md-minus lg:text-md font-secondary uppercase text-white text-center font-medium"><?= $news_title; ?></h2>
         <?php endif; ?>
 
         <ul class="news-items">
@@ -83,13 +87,13 @@
             ?>
 
             <li class="news-item border-t border-white">
-              <a href="<?= $link; ?>" target="_blank" class="block space-y-6 py-12">
-                <div class="title h-[24px] relative">
+              <a href="<?= $link; ?>" target="_blank" class="flex flex-col items-start lg:block space-y-6 py-12">
+                <div class="title lg:h-[24px] relative">
                   <span class="text-base font-primary text-navy"><?= $title; ?></span>
                 </div>
                 
-                <div class="subtitle h-[31px] relative">
-                  <span class="text-sm font-secondary text-white"><?= $subtitle; ?></span>
+                <div class="subtitle lg:h-[31px] relative self-end w-2/3 lg:w-auto">
+                  <span class="text-sm font-secondary text-white leading-[1.4]"><?= $subtitle; ?></span>
                 </div>
               </a>
             </li>

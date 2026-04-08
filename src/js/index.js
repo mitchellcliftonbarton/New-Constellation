@@ -1,6 +1,10 @@
 import ImageLoader from './classes/ImageLoader'
 import DefVideo from './classes/DefVideo'
 import StarTrail from './classes/StarTrail'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', async () => {
@@ -28,37 +32,62 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   new ImageLoader()
 
-  // Light / dark mode toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode');
-      themeToggle.setAttribute('aria-pressed', isDark);
-    });
+  // Mission statement scroll animation
+  const missionStatement = document.querySelector('.mission-statement')
+  if (missionStatement) {
+    const gold1 = missionStatement.querySelector('[data-mission="gold-1"]')
+    const gold2 = missionStatement.querySelector('[data-mission="gold-2"]')
+    const blue1 = missionStatement.querySelector('[data-mission="blue-1"]')
+    const blue2 = missionStatement.querySelector('[data-mission="blue-2"]')
+
+    gsap.matchMedia().add('(min-width: 1024px)', () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: missionStatement,
+          start: 'top bottom',
+          end: 'top 65%',
+          scrub: true,
+        },
+      })
+
+      if (gold1) tl.from(gold1, { x: -50, ease: 'power2.out' }, 0)
+      if (gold2) tl.from(gold2, { x: 50, ease: 'power2.out' }, 0)
+      if (blue1) tl.from(blue1, { x: -120, ease: 'power2.out' }, 0)
+      if (blue2) tl.from(blue2, { x: 120, ease: 'power2.out' }, 0)
+    })
   }
 
-  const starCanvas = document.getElementById('footer-canvas');
-  if (starCanvas) new StarTrail(starCanvas);
+  // Light / dark mode toggle
+  const themeToggle = document.getElementById('theme-toggle')
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode')
+      themeToggle.setAttribute('aria-pressed', isDark)
+    })
+  }
+
+  const starCanvas = document.getElementById('footer-canvas')
+  if (starCanvas && window.matchMedia('(min-width: 1024px)').matches) new StarTrail(starCanvas)
 
   // News item hover: compute center offsets so only transform is animated
   const setNewsOffsets = () => {
-    document.querySelectorAll('.news-item').forEach(item => {
-      const titleSpan    = item.querySelector('.title span');
-      const subtitleSpan = item.querySelector('.subtitle span');
-      const titleWrap    = item.querySelector('.title');
-      const subtitleWrap = item.querySelector('.subtitle');
+    document.querySelectorAll('.news-item').forEach((item) => {
+      const titleSpan = item.querySelector('.title span')
+      const subtitleSpan = item.querySelector('.subtitle span')
+      const titleWrap = item.querySelector('.title')
+      const subtitleWrap = item.querySelector('.subtitle')
 
       if (titleSpan && titleWrap) {
-        const offset = titleWrap.offsetWidth / 2 - titleSpan.offsetWidth / 2;
-        titleSpan.style.setProperty('--title-center-offset', `${offset}px`);
+        const offset = titleWrap.offsetWidth / 2 - titleSpan.offsetWidth / 2
+        titleSpan.style.setProperty('--title-center-offset', `${offset}px`)
       }
       if (subtitleSpan && subtitleWrap) {
-        const offset = subtitleWrap.offsetWidth / 2 - subtitleSpan.offsetWidth / 2;
-        subtitleSpan.style.setProperty('--subtitle-center-offset', `${-offset}px`);
+        const offset = subtitleWrap.offsetWidth / 2 - subtitleSpan.offsetWidth / 2
+        subtitleSpan.style.setProperty('--subtitle-center-offset', `${-offset}px`)
       }
-    });
-  };
+    })
+  }
 
-  setNewsOffsets();
-  window.addEventListener('resize', setNewsOffsets);
+  setNewsOffsets()
+  window.addEventListener('resize', setNewsOffsets)
 })

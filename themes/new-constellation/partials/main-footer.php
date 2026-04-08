@@ -7,7 +7,7 @@ $footer_links = get_field('footer_links', 'option');
 <footer
   id="main-footer"
   aria-label="Footer"
-  class="bg-navy w-full px-xl py-lg flex flex-col items-start justify-between gap-[400px] relative"
+  class="bg-navy w-full px-md lg:px-xl py-md lg:py-lg flex flex-col items-start justify-between gap-[288px] lg:gap-[400px] relative"
 >
   <canvas id="footer-canvas" class="fill-parent" aria-hidden="true"></canvas>
   <a 
@@ -18,14 +18,14 @@ $footer_links = get_field('footer_links', 'option');
     <?php get_template_part('partials/icons/wordmark-alt'); ?>
   </a>
 
-  <div class="flex items-end justify-between w-full gap-base">
+  <div class="flex flex-col lg:flex-row items-start lg:items-end lg:justify-between w-full gap-md lg:gap-base">
     <?php if ($footer_email_link): ?>
-      <a href="<?= esc_url($footer_email_link['url']) ?>" class="text-sm font-secondary flex-none lg:hover:opacity-50 transition-opacity duration-300">
+      <a href="<?= esc_url($footer_email_link['url']) ?>" class="text-xs lg:text-sm font-secondary flex-none lg:hover:opacity-50 transition-opacity duration-300">
         <?= esc_html($footer_email_link['title']) ?>
       </a>
     <?php endif; ?>
   
-    <ul class="footer-link text-xs font-secondary flex items-center justify-end w-full gap-64 flex-1" role="navigation">
+    <ul class="footer-link text-xs font-secondary flex flex-col lg:flex-row items-start lg:items-center lg:justify-end w-full gap-md lg:gap-64 lg:flex-1" role="navigation">
       <?php foreach ($footer_links as $link):
         $url = $link['link']['url'] ?? '';
         $title = $link['link']['title'] ?? '';

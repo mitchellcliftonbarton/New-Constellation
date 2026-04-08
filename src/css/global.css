@@ -9,8 +9,14 @@ Global
   --text-xs--line-height: 1;
   --text-sm: 1.6rem;
   --text-sm--line-height: 1;
+  --text-base-minus: 2.1rem;
+  --text-base-minus--line-height: 1;
   --text-base: 2.4rem;
   --text-base--line-height: 1;
+  --text-base-plus: 3.2rem;
+  --text-base-plus--line-height: 1;
+  --text-md-minus: 3.6rem;
+  --text-md-minus--line-height: 1;
   --text-md: 4.8rem;
   --text-md--line-height: 1;
 
@@ -250,12 +256,17 @@ Landing
   a {
     .title {
       span {
-        left: 0;
-        position: absolute;
-        display: inline-block;
-        white-space: nowrap;
-        transform: translateX(0);
-        transition: transform 0.3s;
+        position: relative;
+        text-align: left;
+
+        @media screen and (min-width: theme('screens.lg')) {
+          left: 0;
+          position: absolute;
+          display: inline-block;
+          white-space: nowrap;
+          transform: translateX(0);
+          transition: transform 0.3s;
+        }
       }
     }
 
@@ -264,22 +275,27 @@ Landing
         text-decoration: underline;
         text-underline-offset: 0.22em;
         text-decoration-thickness: var(--underline-thickness);
-        right: 0;
-        position: absolute;
-        display: inline-block;
-        white-space: nowrap;
-        transform: translateX(0);
-        transition: transform 0.3s;
+
+        @media screen and (min-width: theme('screens.lg')) {
+          right: 0;
+          position: absolute;
+          display: inline-block;
+          white-space: nowrap;
+          transform: translateX(0);
+          transition: transform 0.3s;
+        }
       }
     }
 
-    &:hover {
-      .title span {
-        transform: translateX(var(--title-center-offset));
-      }
+    @media screen and (min-width: theme('screens.lg')) {
+      &:hover {
+        .title span {
+          transform: translateX(var(--title-center-offset));
+        }
 
-      .subtitle span {
-        transform: translateX(var(--subtitle-center-offset));
+        .subtitle span {
+          transform: translateX(var(--subtitle-center-offset));
+        }
       }
     }
   }

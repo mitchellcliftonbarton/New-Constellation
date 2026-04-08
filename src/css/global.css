@@ -248,14 +248,12 @@ Landing
   a {
     .title {
       span {
-        left: 0px;
-        transform: translateX(0%);
+        left: 0;
         position: absolute;
         display: inline-block;
         white-space: nowrap;
-        transition:
-          transform 0.3s,
-          left 0.3s;
+        transform: translateX(0);
+        transition: transform 0.3s;
       }
     }
 
@@ -264,30 +262,22 @@ Landing
         text-decoration: underline;
         text-underline-offset: 0.22em;
         text-decoration-thickness: var(--underline-thickness);
-        right: 0px;
-        transform: translateX(0%);
+        right: 0;
         position: absolute;
         display: inline-block;
         white-space: nowrap;
-        transition:
-          transform 0.3s,
-          right 0.3s;
+        transform: translateX(0);
+        transition: transform 0.3s;
       }
     }
 
     &:hover {
-      .title {
-        span {
-          transform: translateX(-50%);
-          left: 50%;
-        }
+      .title span {
+        transform: translateX(var(--title-center-offset));
       }
 
-      .subtitle {
-        span {
-          transform: translateX(50%);
-          right: 50%;
-        }
+      .subtitle span {
+        transform: translateX(var(--subtitle-center-offset));
       }
     }
   }

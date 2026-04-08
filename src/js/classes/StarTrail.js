@@ -11,6 +11,7 @@ export default class StarTrail {
     this.mouseX = canvas.width / 2;
     this.mouseY = canvas.height / 2;
     this.onPage = false;
+    this.trailAlpha = 0; // fades in/out on enter/leave
 
     // Path history
     this.totalDist = 0;
@@ -24,21 +25,22 @@ export default class StarTrail {
     this.CIRCLE_R      = 5;
     this.TRAIL_SPACING = 40;
 
-    // Placed circles (on click)
+    // Placed circles (distance + time based)
     this.placed = [];
+    this.distSinceLastDot = 0;
+    this.lastDotTime = 0;
 
     // Bind & attach events to the parent so they fire regardless of which
     // child element (links, canvas, etc.) the mouse is over
     this._onMouseMove  = this._onMouseMove.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMouseEnter = this._onMouseEnter.bind(this);
-    this._onClick      = this._onClick.bind(this);
 
     const container = canvas.parentElement;
     container.addEventListener('mousemove',  this._onMouseMove);
     container.addEventListener('mouseleave', this._onMouseLeave);
     container.addEventListener('mouseenter', this._onMouseEnter);
-    container.addEventListener('click',      this._onClick);
+
 
     requestAnimationFrame(() => this.animate());
   }
@@ -61,22 +63,36 @@ export default class StarTrail {
     const segLen = Math.sqrt(dx * dx + dy * dy);
     if (segLen > 2) {
       this.totalDist += segLen;
+      this.distSinceLastDot += segLen;
       this.pathHistory.push({ x: this.mouseX, y: this.mouseY, d: this.totalDist });
       if (this.pathHistory.length > this.MAX_HISTORY) this.pathHistory.shift();
     }
+
+    const now = performance.now();
+    const margin = 40;
+    const inSafeZone = this.mouseX > margin && this.mouseX < this.canvas.width - margin
+                    && this.mouseY > margin && this.mouseY < this.canvas.height - margin;
+    if (inSafeZone && this.distSinceLastDot >= 100 && now - this.lastDotTime >= 1500) {
+      this.distSinceLastDot = 0;
+      this.lastDotTime = now;
+      this.placed.push({ x: this.mouseX, y: this.mouseY, birth: now, duration: 10000 });
+    }
   }
 
-  _onMouseLeave() { this.onPage = false; }
-  _onMouseEnter() { this.onPage = true; }
+  _onMouseLeave() {
+    this.onPage = false;
+    this.distSinceLastDot = 0;
+    this.lastDotTime = performance.now();
+  }
 
-  _onClick(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    this.placed.push({
-      x:        e.clientX - rect.left,
-      y:        e.clientY - rect.top,
-      birth:    performance.now(),
-      duration: 10000,
-    });
+  _onMouseEnter() {
+    this.onPage = true;
+    // Reset path so the trail starts fresh from the current mouse position
+    this.totalDist = 0;
+    this.headDist  = 0;
+    this.pathHistory = [{ x: this.mouseX, y: this.mouseY, d: 0 }];
+    this.distSinceLastDot = 0;
+    this.lastDotTime = performance.now();
   }
 
   pointAtAbsDist(d) {
@@ -108,12 +124,18 @@ export default class StarTrail {
     // Ease head toward the latest recorded distance
     this.headDist += (this.totalDist - this.headDist) * this.TRAIL_LAG;
 
-    if (this.onPage) {
-      // Trail dots
+    // Fade trail in/out on enter/leave
+    const targetAlpha = this.onPage ? 1 : 0;
+    this.trailAlpha += (targetAlpha - this.trailAlpha) * 0.06;
+
+    if (this.trailAlpha > 0.01) {
+      // Trail dots — skip any that haven't earned their place in the path yet
       for (let i = this.TRAIL_COUNT - 1; i >= 0; i--) {
-        const pt    = this.pointAtAbsDist(this.headDist - (i + 1) * this.TRAIL_SPACING);
+        const targetDist = this.headDist - (i + 1) * this.TRAIL_SPACING;
+        if (targetDist < 0) continue;
+        const pt    = this.pointAtAbsDist(targetDist);
         const frac  = 1 - (i + 1) / this.TRAIL_COUNT;
-        const alpha = 0.25 + frac * 0.5;
+        const alpha = (0.25 + frac * 0.5) * this.trailAlpha;
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle   = '#FAFAF2';
@@ -124,7 +146,7 @@ export default class StarTrail {
 
       // Cursor dot
       ctx.save();
-      ctx.globalAlpha = 0.9;
+      ctx.globalAlpha = 0.9 * this.trailAlpha;
       ctx.fillStyle   = '#FAFAF2';
       this.circlePath(this.mouseX, this.mouseY, this.CIRCLE_R);
       ctx.fill();

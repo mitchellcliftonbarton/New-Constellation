@@ -84,6 +84,28 @@
                     "return_format": "array",
                     "allow_in_bindings": 0,
                     "parent_repeater": "field_69cd7f544b95e"
+                },
+                {
+                    "key": "field_69d68e75b069a",
+                    "label": "Is Large",
+                    "name": "is_large",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "If true, this link will be a larger font size compared to the other links.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_69cd7f544b95e"
                 }
             ]
         },
@@ -172,5 +194,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1775075192
+    "modified": 1775668876
 }

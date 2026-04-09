@@ -26,10 +26,17 @@ export default class DefVideo extends HTMLElement {
         title: false,
         vimeo_logo: false,
       })
+      this.videoInstance.ready().then(() => {
+        const iframe = this.videoInner.querySelector('iframe')
+        if (iframe) iframe.tabIndex = -1
+      })
     } else if (this.videoInner?.dataset.youtubeId) {
       this.type = 'youtube'
       this.videoInstance = YouTubePlayer(this.videoInner, {
         videoId: this.videoInner.dataset.youtubeId,
+      })
+      this.videoInstance.getIframe().then(iframe => {
+        iframe.tabIndex = -1
       })
     }
 
@@ -55,6 +62,8 @@ export default class DefVideo extends HTMLElement {
     }
 
     this.videoContainer.classList.add('playing')
+    const iframe = this.videoInner?.querySelector('iframe')
+    if (iframe) iframe.removeAttribute('tabindex')
   }
 
   pause({ removeClass = true } = {}) {

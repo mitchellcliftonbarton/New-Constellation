@@ -60,8 +60,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Light / dark mode toggle
   const themeToggle = document.getElementById('theme-toggle')
   if (themeToggle) {
+    themeToggle.setAttribute('aria-pressed', document.documentElement.classList.contains('dark-mode'))
     themeToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.toggle('dark-mode')
+      const isDark = document.documentElement.classList.toggle('dark-mode')
+      localStorage.setItem('theme', isDark ? 'dark' : 'light')
       themeToggle.setAttribute('aria-pressed', isDark)
     })
   }

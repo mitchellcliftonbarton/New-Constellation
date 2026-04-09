@@ -1,5 +1,7 @@
 <?php $is_front_page = is_front_page(); ?>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header id="main-nav" class=" absolute top-0 left-0 w-full px-xl py-md flex items-center justify-center lg:justify-between bg-transparent z-[1000]">
 
   <div class="nav-logo">
@@ -13,7 +15,7 @@
 
   <button
     id="theme-toggle"
-    class="nav-theme-toggle lg:hover:opacity-50 transition-opacity duration-300 hidden lg:block"
+    class="nav-theme-toggle lg:hover:opacity-50 transition-opacity duration-300"
     aria-label="Toggle light/dark mode"
     aria-pressed="false"
   >

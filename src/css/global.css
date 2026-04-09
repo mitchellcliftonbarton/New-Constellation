@@ -23,10 +23,12 @@ Global
   --color-black: #000;
   --color-white: #fff;
   --color-navy: #1d1735;
+  --color-navy-light: #474063;
   --color-cream: #fafaf2;
   --color-gold: #8c773e;
   --color-teal: #277c70;
   --color-grey: #eae9e7;
+  --color-teal-light: #69d0c1;
 
   --spacing-base: 2rem;
   --spacing-md: 3rem;
@@ -41,6 +43,21 @@ Global
 :root {
   --underline-offset: 0.17em;
   --underline-thickness: 0.05em;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 1rem 1.6rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  z-index: 9999;
+
+  &:focus {
+    top: 0;
+  }
 }
 
 * {
@@ -67,6 +84,10 @@ body {
 
 main {
   background: var(--color-cream);
+
+  html.dark-mode & {
+    background: var(--color-navy);
+  }
 }
 
 header {
@@ -78,6 +99,11 @@ button {
   outline: none;
   box-shadow: none;
   border: none;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
 
 input {
@@ -218,13 +244,6 @@ Password Form
 Landing
 */
 
-.landing {
-  h1 svg {
-    width: 70vw;
-    max-width: 1100px;
-  }
-}
-
 @keyframes stroke-flow {
   from {
     stroke-dashoffset: 0;
@@ -244,10 +263,17 @@ Landing
     transform: translateX(-55.4%) translateY(-50%);
     height: 145%;
     width: auto;
+    color: var(--color-grey);
 
     & > path {
       stroke-dasharray: 3000 600;
       animation: stroke-flow 12s linear infinite;
+    }
+  }
+
+  html.dark-mode & {
+    svg {
+      color: var(--color-navy-light);
     }
   }
 }
@@ -258,6 +284,7 @@ Landing
       span {
         position: relative;
         text-align: left;
+        color: var(--color-navy);
 
         @media screen and (min-width: theme('screens.lg')) {
           left: 0;
@@ -266,6 +293,10 @@ Landing
           white-space: nowrap;
           transform: translateX(0);
           transition: transform 0.3s;
+        }
+
+        html.dark-mode & {
+          color: var(--color-teal-light);
         }
       }
     }
@@ -311,7 +342,7 @@ Landing
   transition: transform 0.4s ease;
 }
 
-.dark-mode .nav-theme-toggle svg {
+html.dark-mode .nav-theme-toggle svg {
   transform: rotate(180deg);
 }
 
@@ -334,6 +365,10 @@ def-video {
     .play {
       transition: none;
       pointer-events: auto;
+
+      &:focus-visible {
+        box-shadow: inset 0 0 0 3px white;
+      }
     }
 
     &.playing {
@@ -390,5 +425,74 @@ def-video {
     video {
       opacity: 1;
     }
+  }
+}
+
+/*
+Home Page
+*/
+
+.page-home {
+  .main-section {
+    background: var(--color-cream);
+
+    .landing {
+      h1 svg {
+        width: 70vw;
+        max-width: 1100px;
+      }
+    }
+
+    .blue-text {
+      color: var(--color-navy);
+    }
+
+    .gold-text {
+      color: var(--color-gold);
+    }
+
+    .navy-text {
+      color: var(--color-navy);
+    }
+
+    html.dark-mode & {
+      background: var(--color-navy);
+
+      .landing svg {
+        color: var(--color-cream);
+      }
+
+      .blue-text {
+        color: var(--color-grey);
+      }
+
+      .gold-text {
+        color: var(--color-cream);
+      }
+
+      .navy-text {
+        color: var(--color-grey);
+      }
+    }
+  }
+
+  #news {
+    background: var(--color-gold);
+
+    html.dark-mode & {
+      background: var(--color-black);
+    }
+  }
+}
+
+/*
+Default Page
+*/
+
+.page-content {
+  color: var(--color-navy);
+
+  html.dark-mode & {
+    color: var(--color-grey);
   }
 }

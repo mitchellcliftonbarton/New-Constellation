@@ -24,7 +24,7 @@
     <?php the_content(); ?>
   </main>
 <?php else: ?>
-  <section class="w-full bg-cream relative">
+  <section class="main-section w-full relative">
     <div class="landing h-svh flex justify-center items-center relative z-10">
       <h1 class="fade-in delay-3">
         <span class="sr-only">New Constellation</span>
@@ -32,23 +32,23 @@
       </h1>
     </div>
 
-    <div class="mission-statement h-[60svh] flex justify-center items-start relative z-10 pt-md">
+    <div id="main-content" class="mission-statement h-[60svh] flex justify-center items-start relative z-10 pt-md" tabindex="-1">
       <div class="flex flex-col items-center">
         <?php if ($gold_text_1 || $gold_text_2): ?>
           <div class="flex gap-4">
             <?php if ($gold_text_1): ?>
-              <p data-mission="gold-1" class="uppercase text-gold font-secondary font-medium text-base-plus lg:text-md tracking-[0.09em]"><?= $gold_text_1; ?></p>
+              <p data-mission="gold-1" class="gold-text uppercase font-secondary font-medium text-base-plus lg:text-md tracking-[0.09em]"><?= $gold_text_1; ?></p>
             <?php endif; ?>
 
             <?php if ($gold_text_2): ?>
-              <p class="font-tertiary text-sm lg:text-base italic text-navy mt-[22px] lg:mt-[35px]">and</p>
-              <p data-mission="gold-2" class="uppercase text-gold font-secondary text-base-plus lg:text-md mt-[18px] lg:mt-[25px] font-medium tracking-[0.09em]"><?= $gold_text_2; ?></p>
+              <p class="font-tertiary text-sm lg:text-base italic mt-[22px] lg:mt-[35px] navy-text">and</p>
+              <p data-mission="gold-2" class="gold-text uppercase font-secondary text-base-plus lg:text-md mt-[18px] lg:mt-[25px] font-medium tracking-[0.09em]"><?= $gold_text_2; ?></p>
             <?php endif; ?>
           </div>
         <?php endif; ?>
 
         <?php if ($blue_text_1 || $blue_text_2): ?>
-          <div class="text-base-plus lg:text-md text-navy font-primary leading-[.9] mt-[-8px]">
+          <div class="blue-text text-base-plus lg:text-md font-primary leading-[.9] mt-[-8px]">
             <?php if ($blue_text_1): ?>
               <div data-mission="blue-1">
                 <p class="translate-x-[-39%]"><?= $blue_text_1; ?></p>
@@ -71,7 +71,7 @@
   </section>
 
   <?php if ($news_items): ?>
-    <section class="w-full bg-gold relative px-md lg:px-xl py-[100px] lg:py-[210px]">
+    <section id="news" class="w-full relative px-md lg:px-xl py-[100px] lg:py-[210px]">
       <div class="mx-auto max-w-[850px] space-y-md">
         <?php if ($news_title): ?>
           <h2 class="text-md-minus lg:text-md font-secondary uppercase text-white text-center font-medium"><?= $news_title; ?></h2>
@@ -89,7 +89,7 @@
             <li class="news-item border-t border-white">
               <a href="<?= $link; ?>" target="_blank" class="flex flex-col items-start lg:block space-y-6 py-12">
                 <div class="title lg:h-[24px] relative">
-                  <span class="text-base font-primary text-navy"><?= $title; ?></span>
+                  <span class="text-base font-primary"><?= $title; ?></span>
                 </div>
                 
                 <div class="subtitle lg:h-[31px] relative self-end w-2/3 lg:w-auto">

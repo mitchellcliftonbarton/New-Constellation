@@ -54,7 +54,7 @@ if ($disable_aspect_ratio) {
     <?php endif; ?>
     
     <?php if (!$autoplay): ?>
-      <button class="play fill-parent flex justify-center items-center">
+      <button class="play fill-parent flex justify-center items-center" aria-label="Play video">
         <?php if ($poster_image_set): ?>
           <figure class="fill-parent">
             <img 

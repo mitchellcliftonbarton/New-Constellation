@@ -30,8 +30,8 @@
         </div>
       </div>
 
-      <section class="header relative z-10">
-        <h1 class="text-base lg:text-md font-secondary uppercase text-navy text-left tracking-[.09em] fade-in"><?= $title; ?></h1>
+      <section id="main-content" class="header relative z-10" tabindex="-1">
+        <h1 class="text-base lg:text-md font-secondary uppercase text-left tracking-[.09em] fade-in"><?= $title; ?></h1>
       </section>
 
       <div class="grid grid-cols-12 lg:gap-base mt-lg lg:mt-xl relative z-10">

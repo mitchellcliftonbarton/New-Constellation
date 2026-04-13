@@ -28,7 +28,7 @@
     <div class="landing h-svh flex justify-center items-center relative z-10">
       <h1 class="fade-in delay-3">
         <span class="sr-only">New Constellation</span>
-        <?php get_template_part('partials/icons/wordmark'); ?>
+        <div id="logo-lottie" aria-hidden="true"></div>
       </h1>
     </div>
 

@@ -4,7 +4,7 @@ import StarTrail from './classes/StarTrail'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import lottie from 'lottie-web'
-import logoAnimation from '../json/new_constellation_logo.json'
+import logoAnimation from '../json/new_constellation_logo_2.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,43 +34,40 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   new ImageLoader()
 
-  // Logo Lottie animation — plays once on load, holds last frame
+  // Logo Lottie animation — plays once on load, holds last frame.
+  // Color is driven entirely by CSS `color` on #logo-lottie (navy / cream).
+  // A MutationObserver intercepts every fill/stroke Lottie sets and swaps it
+  // to `currentColor` so the CSS value always wins — no JS timing needed.
   const logoContainer = document.getElementById('logo-lottie')
-  const LOTTIE_NAVY = [29 / 255, 23 / 255, 53 / 255, 1]
-  const LOTTIE_CREAM = [250 / 255, 250 / 255, 242 / 255, 1]
-
-  const getLottieData = (isDark) => {
-    const data = JSON.parse(JSON.stringify(logoAnimation))
-    const color = isDark ? LOTTIE_CREAM : LOTTIE_NAVY
-    const replace = (obj) => {
-      if (!obj || typeof obj !== 'object') return
-      if (Array.isArray(obj)) { obj.forEach(replace); return }
-      if ((obj.ty === 'fl' || obj.ty === 'st') && obj.c?.k) obj.c.k = color
-      Object.values(obj).forEach(replace)
-    }
-    replace(data)
-
-    // Fix fill layers that exit before the composition ends — their op is set
-    // below the total frame count, making them invisible at the held end frame.
-    // Only extend layers containing a fill (not stroke-only draw-on layers).
-    data.layers.forEach((layer) => {
-      if (typeof layer.op === 'number' && layer.op < data.op) {
-        const hasFill = layer.shapes?.some((shape) => shape.it?.some((item) => item.ty === 'fl'))
-        if (hasFill) layer.op = data.op + 1
-      }
-    })
-
-    return data
-  }
 
   if (logoContainer) {
-    lottie.loadAnimation({
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(({ target, attributeName }) => {
+        if (target.closest('defs, mask, clipPath')) return
+        const val = target.getAttribute(attributeName)
+        if (val && val !== 'none' && val !== 'currentColor') {
+          target.setAttribute(attributeName, 'currentColor')
+        }
+      })
+    })
+
+    observer.observe(logoContainer, {
+      attributes: true,
+      attributeFilter: ['fill', 'stroke'],
+      subtree: true,
+    })
+
+    const anim = lottie.loadAnimation({
       container: logoContainer,
       renderer: 'svg',
       loop: false,
       autoplay: true,
-      animationData: getLottieData(document.documentElement.classList.contains('dark-mode')),
+      animationData: logoAnimation,
     })
+
+    anim.setSpeed(0.85)
+
+    anim.addEventListener('complete', () => observer.disconnect())
   }
 
   // Mission statement scroll animation
@@ -107,11 +104,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       localStorage.setItem('theme', isDark ? 'dark' : 'light')
       themeToggle.setAttribute('aria-pressed', isDark)
 
-      if (logoContainer) {
-        const color = isDark ? '#fafaf2' : '#1d1735'
-        logoContainer.querySelectorAll('[fill]:not([fill="none"])').forEach((el) => el.setAttribute('fill', color))
-        logoContainer.querySelectorAll('[stroke]:not([stroke="none"])').forEach((el) => el.setAttribute('stroke', color))
-      }
     })
   }
 

@@ -441,6 +441,12 @@ Home Page
         width: 70vw;
         max-width: 1100px;
       }
+
+      #logo-lottie {
+        width: 70vw;
+        max-width: 1100px;
+        color: var(--color-navy);
+      }
     }
 
     .blue-text {
@@ -458,7 +464,8 @@ Home Page
     html.dark-mode & {
       background: var(--color-navy);
 
-      .landing svg {
+      .landing svg,
+      .landing #logo-lottie {
         color: var(--color-cream);
       }
 

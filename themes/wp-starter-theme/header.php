@@ -72,7 +72,6 @@
     <?php endif; ?>
     <meta property="og:url" content="<?= esc_url($metadata['url']); ?>">
 
-    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark-mode');</script>
     <?php wp_head(); ?>
   </head>
 

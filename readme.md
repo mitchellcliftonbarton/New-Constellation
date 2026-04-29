@@ -1,6 +1,12 @@
-# New Constellation
+# Cold Rice LLC | WordPress Starter Theme
 
-Wordpress theme: `themes/new-constellation`
+## Setup
+
+- Clone the repository
+- Change `/themes/wp-starter-theme` to your theme name
+- Change info in `style.css` to your own
+- Change 'name' in `package.json` to your own
+- Change info in `vite.config.js` (base, outDir)
 
 ## Development
 
@@ -15,12 +21,12 @@ npm run dev
 npm run build
 ```
 
-Parcel outputs bundles to `themes/new-constellation/assets`
+Vite outputs bundles to `themes/wp-starter-theme/dist`
 
 ### Symlink
 
-You can symlink the theme into the local development site:
+Then, to actually install the theme, you can symlink the theme into the local development site:
 
 ```
-ln -s /path/to/repository/themes/new-constellation /path/to/local-wp/wp-content/themes/
+ln -s /path/to/repository/themes/wp-starter-theme /path/to/local-wp/wp-content/themes/
 ```

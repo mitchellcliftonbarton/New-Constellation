@@ -5,6 +5,7 @@ require_once('lib/custom-functions.php');
 require_once('lib/setup-admin.php');
 require_once('lib/setup-images.php');
 require_once('lib/setup-acf.php');
+require_once('lib/setup-post-types.php');
 
 
 /*

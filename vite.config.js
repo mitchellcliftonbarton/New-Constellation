@@ -3,9 +3,9 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/wp-content/themes/new-constellation/dist',
+  base: '/wp-content/themes/wp-starter-theme/dist', // change to path to your theme
   build: {
-    outDir: path.resolve(__dirname, 'themes/new-constellation/dist'),
+    outDir: path.resolve(__dirname, 'themes/wp-starter-theme/dist'), // change to path to your theme
     emptyOutDir: true,
     rollupOptions: {
       input: {
